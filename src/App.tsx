@@ -30,16 +30,18 @@ function App() {
       })
   }, [])
 
-  const filteredCompanies = data?.companies.filter(company => {
-    const matchesName = company.name.toLowerCase().includes(nameSearch.toLowerCase())
+  const filteredCompanies = [...(data?.companies || [])]
+    .filter(company => {
+      const matchesName = company.name.toLowerCase().includes(nameSearch.toLowerCase())
 
-    const tagQueries = tagSearch.split(',').map(s => s.trim().toLowerCase()).filter(s => s !== '')
-    const matchesTags = tagQueries.length === 0 || tagQueries.some(query =>
-      company.tagIds.some(tagId => tagId.toLowerCase().includes(query))
-    )
+      const tagQueries = tagSearch.split(',').map(s => s.trim().toLowerCase()).filter(s => s !== '')
+      const matchesTags = tagQueries.length === 0 || tagQueries.some(query =>
+        company.tagIds.some(tagId => tagId.toLowerCase().includes(query))
+      )
 
-    return matchesName && matchesTags
-  }) || []
+      return matchesName && matchesTags
+    })
+    .sort((a, b) => a.name.localeCompare(b.name))
 
   return (
     <div className="container">
