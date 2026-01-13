@@ -36,7 +36,10 @@ function App() {
 
       const tagQueries = tagSearch.split(',').map(s => s.trim().toLowerCase()).filter(s => s !== '')
       const matchesTags = tagQueries.length === 0 || tagQueries.some(query =>
-        company.tagIds.some(tagId => tagId.toLowerCase().includes(query))
+        company.tagIds.some(tagId => {
+          const tag = data?.tags.find(t => t.id === tagId)
+          return tag?.label.toLowerCase().includes(query) || tagId.toLowerCase().includes(query)
+        })
       )
 
       return matchesName && matchesTags
