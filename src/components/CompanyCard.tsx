@@ -1,12 +1,12 @@
-import type { Company } from '../types/company'
-import { getTagById } from '../data/companies'
+import type { Company, Tag } from '../types/company'
 import './CompanyCard.css'
 
 interface CompanyCardProps {
     company: Company
+    tags: Tag[]
 }
 
-export function CompanyCard({ company }: CompanyCardProps) {
+export function CompanyCard({ company, tags }: CompanyCardProps) {
     return (
         <section className="card company-card">
             <div className="card-id">{company.id}</div>
@@ -14,7 +14,7 @@ export function CompanyCard({ company }: CompanyCardProps) {
             <div className="card-subtitle">{company.location}</div>
             <div className="card-tags">
                 {company.tagIds.map(tagId => {
-                    const tag = getTagById(tagId);
+                    const tag = tags.find(t => t.id === tagId);
                     return (
                         <span key={tagId} className="tag">
                             {tag?.label || "Unknown Tag"}
@@ -30,3 +30,4 @@ export function CompanyCard({ company }: CompanyCardProps) {
         </section>
     )
 }
+

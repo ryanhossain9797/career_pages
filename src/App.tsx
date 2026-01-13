@@ -1,14 +1,33 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import { CompanyCard } from './components/CompanyCard'
-import { companies } from './data/companies'
+import { DATA_URL, type PageData } from './data/companies'
 import { CURRENT_YEAR } from './constants/app'
 
 function App() {
+  const [data, setData] = useState<PageData | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [nameSearch, setNameSearch] = useState('')
   const [tagSearch, setTagSearch] = useState('')
 
-  const filteredCompanies = companies.filter(company => {
+  useEffect(() => {
+    fetch(DATA_URL)
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to fetch data')
+        return res.json()
+      })
+      .then(json => {
+        setData(json)
+        setLoading(false)
+      })
+      .catch(err => {
+        setError(err.message)
+        setLoading(false)
+      })
+  }, [])
+
+  const filteredCompanies = data?.companies.filter(company => {
     const matchesName = company.name.toLowerCase().includes(nameSearch.toLowerCase())
 
     const tagQueries = tagSearch.split(',').map(s => s.trim().toLowerCase()).filter(s => s !== '')
@@ -17,7 +36,10 @@ function App() {
     )
 
     return matchesName && matchesTags
-  })
+  }) || []
+
+  if (loading) return <div className="container"><main><div className="card large"><div className="card-subtitle">LOADING OPPORTUNITIES...</div></div></main></div>
+  if (error) return <div className="container"><main><div className="card large"><div className="card-subtitle" style={{ color: 'red' }}>ERROR: {error}</div></div></main></div>
 
   return (
     <div className="container">
@@ -28,12 +50,8 @@ function App() {
         <nav>
           <div className="nav-links">
             <a href="#">COMPANIES</a>
-            {/* <a href="#">JOBS</a> */}
-            {/* <a href="#">RESOURCES</a> */}
           </div>
           <div className="nav-icons">
-            {/* <div className="icon-box">●</div> */}
-            {/* <div className="icon-box">▶</div> */}
             <div className="icon-box">EN</div>
           </div>
         </nav>
@@ -67,7 +85,7 @@ function App() {
 
         <div className="grid">
           {filteredCompanies.map((company) => (
-            <CompanyCard key={company.id} company={company} />
+            <CompanyCard key={company.id} company={company} tags={data?.tags || []} />
           ))}
           {filteredCompanies.length === 0 && (
             <div className="card large" style={{ borderStyle: 'dashed', minHeight: '100px', opacity: 0.5 }}>
@@ -87,3 +105,4 @@ function App() {
 }
 
 export default App
+
