@@ -84,8 +84,8 @@ function App() {
         </div>
 
         <div className="grid">
-          {filteredCompanies.map((company) => (
-            <CompanyCard key={company.id} company={company} tags={data?.tags || []} />
+          {filteredCompanies.map((company, index) => (
+            <CompanyCard key={index} company={company} id={index + 1} tags={data?.tags || []} />
           ))}
           {filteredCompanies.length === 0 && (
             <div className="card large" style={{ borderStyle: 'dashed', minHeight: '100px', opacity: 0.5 }}>

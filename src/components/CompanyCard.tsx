@@ -3,13 +3,15 @@ import './CompanyCard.css'
 
 interface CompanyCardProps {
     company: Company
+    id: number
     tags: Tag[]
 }
 
-export function CompanyCard({ company, tags }: CompanyCardProps) {
+export function CompanyCard({ company, id, tags }: CompanyCardProps) {
+    const displayId = id.toString().padStart(8, '0')
     return (
         <section className="card company-card">
-            <div className="card-id">{company.id}</div>
+            <div className="card-id">{displayId}</div>
             <h2 className="card-title">{company.name}</h2>
             <div className="card-subtitle">{company.location}</div>
             <div className="card-tags">
