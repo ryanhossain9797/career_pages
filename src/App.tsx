@@ -1,27 +1,8 @@
 import './App.css'
 import { CompanyCard } from './components/CompanyCard'
+import { companies } from './data/companies'
 
 function App() {
-  const companies = [
-    {
-      id: '00000001',
-      name: 'ENOSIS SOLUTIONS',
-      location: 'DHAKA, BANGLADESH',
-      tags: ['SOFTWARE', 'OFFSHORE'],
-    },
-    {
-      id: '00000002',
-      name: 'THERAP (BD) LTD.',
-      location: 'DHAKA, BANGLADESH',
-      tags: ['HEALTHCARE', 'SAAS'],
-    },
-    {
-      id: '00000003',
-      name: 'SELISE',
-      location: 'DHAKA, BANGLADESH',
-      tags: ['FINTECH', 'CONSULTING'],
-    },
-  ]
 
   return (
     <div className="container">
@@ -36,8 +17,8 @@ function App() {
             <a href="#">RESOURCES</a>
           </div>
           <div className="nav-icons">
-            <div className="icon-box">●</div>
-            <div className="icon-box">▶</div>
+            {/* <div className="icon-box">●</div> */}
+            {/* <div className="icon-box">▶</div> */}
             <div className="icon-box">EN</div>
           </div>
         </nav>
