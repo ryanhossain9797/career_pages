@@ -11,28 +11,66 @@ export const tags: Tag[] = [
 
 const rawCompanies = [
     {
-        name: 'ENOSIS SOLUTIONS',
+        name: 'Cefalo',
         location: 'DHAKA, BANGLADESH',
-        tagIds: ['software', 'offshore'],
-        careerPageUrl: 'https://www.enosisbd.com/careers'
+        tagIds: [],
+        careerPageUrl: 'https://career.cefalo.com/#jobList'
     },
     {
-        name: 'THERAP (BD) LTD.',
+        name: 'Enosis',
         location: 'DHAKA, BANGLADESH',
-        tagIds: ['healthcare', 'saas'],
-        careerPageUrl: 'https://therapbd.com/careers'
+        tagIds: [],
+        careerPageUrl: 'https://enosisbd.pinpointhq.com/#js-careers-jobs-block'
     },
     {
-        name: 'SELISE',
+        name: 'Field nation',
         location: 'DHAKA, BANGLADESH',
-        tagIds: ['fintech', 'consulting'],
-        careerPageUrl: 'https://selise.ch/career/'
+        tagIds: [],
+        careerPageUrl: 'https://jobs.lever.co/fieldnation?location=Dhaka&commitment=Full-time&department=&team=Software%20Development'
     },
+    {
+        name: 'IQVIA',
+        location: 'DHAKA, BANGLADESH',
+        tagIds: [],
+        careerPageUrl: 'https://jobs.iqvia.com/en/jobs?categories=IT+Infrastructure,IT+Design+and+Development,Software+Development+Engineering&locations=Bangladesh'
+    },
+    {
+        name: 'Optimizely',
+        location: 'DHAKA, BANGLADESH',
+        tagIds: [],
+        careerPageUrl: 'https://careers.optimizely.com/search/?createNewAlert=false&q=&locationsearch=Dhaka&optionsFacetsDD_department=&optionsFacetsDD_country='
+    },
+    {
+        name: 'Selise',
+        location: 'DHAKA, BANGLADESH',
+        tagIds: [],
+        careerPageUrl: 'https://selisegroup.com/about-us/#selise-career'
+    },
+    {
+        name: 'SSL Wireless',
+        location: 'DHAKA, BANGLADESH',
+        tagIds: [],
+        careerPageUrl: 'https://sslwireless.com/jobs/'
+    },
+    {
+        name: 'Therap',
+        location: 'DHAKA, BANGLADESH',
+        tagIds: [],
+        careerPageUrl: 'https://therap.hire.trakstar.com/'
+    },
+    {
+        name: 'Relisource',
+        location: 'DHAKA, BANGLADESH',
+        tagIds: [],
+        careerPageUrl: 'https://www.relisource.com/careers/'
+    }
 ]
 
-export const companies: Company[] = rawCompanies.map((c, index) => ({
-    ...c,
-    id: (index + 1).toString().padStart(8, '0')
-}))
+export const companies: Company[] = [...rawCompanies]
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map((c, index) => ({
+        ...c,
+        id: (index + 1).toString().padStart(8, '0')
+    }))
 
 export const getTagById = (id: string) => tags.find(t => t.id === id)
