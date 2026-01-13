@@ -1,0 +1,161 @@
+{
+    "tags": [
+        {
+            "id": "software",
+            "label": "SOFTWARE"
+        },
+        {
+            "id": "offshore",
+            "label": "OFFSHORE"
+        },
+        {
+            "id": "healthcare",
+            "label": "HEALTHCARE"
+        },
+        {
+            "id": "saas",
+            "label": "SAAS"
+        },
+        {
+            "id": "fintech",
+            "label": "FINTECH"
+        },
+        {
+            "id": "consulting",
+            "label": "CONSULTING"
+        },
+        {
+            "id": "marketplace",
+            "label": "MARKETPLACE"
+        },
+        {
+            "id": "data",
+            "label": "DATA & ANALYTICS"
+        },
+        {
+            "id": "dxp",
+            "label": "DXP"
+        },
+        {
+            "id": "telecom",
+            "label": "TELECOM"
+        },
+        {
+            "id": "ecommerce",
+            "label": "ECOMMERCE"
+        },
+        {
+            "id": "logistics",
+            "label": "LOGISTICS"
+        },
+        {
+            "id": "retail",
+            "label": "RETAIL"
+        }
+    ],
+    "companies": [
+        {
+            "id": "00000001",
+            "name": "Cefalo",
+            "location": "DHAKA, BANGLADESH",
+            "tagIds": [
+                "software",
+                "offshore",
+                "consulting"
+            ],
+            "careerPageUrl": "https://career.cefalo.com/#jobList"
+        },
+        {
+            "id": "00000002",
+            "name": "Chaldal",
+            "location": "DHAKA, BANGLADESH",
+            "tagIds": [
+                "ecommerce",
+                "logistics",
+                "retail"
+            ],
+            "careerPageUrl": "https://chaldal.tech/"
+        },
+        {
+            "id": "00000003",
+            "name": "Enosis",
+            "location": "DHAKA, BANGLADESH",
+            "tagIds": [
+                "software",
+                "offshore"
+            ],
+            "careerPageUrl": "https://enosisbd.pinpointhq.com/#js-careers-jobs-block"
+        },
+        {
+            "id": "00000004",
+            "name": "Field nation",
+            "location": "DHAKA, BANGLADESH",
+            "tagIds": [
+                "saas",
+                "marketplace"
+            ],
+            "careerPageUrl": "https://jobs.lever.co/fieldnation?location=Dhaka&commitment=Full-time&department=&team=Software%20Development"
+        },
+        {
+            "id": "00000005",
+            "name": "IQVIA",
+            "location": "DHAKA, BANGLADESH",
+            "tagIds": [
+                "healthcare",
+                "data"
+            ],
+            "careerPageUrl": "https://jobs.iqvia.com/en/jobs?categories=IT+Infrastructure,IT+Design+and+Development,Software+Development+Engineering&locations=Bangladesh"
+        },
+        {
+            "id": "00000006",
+            "name": "Optimizely",
+            "location": "DHAKA, BANGLADESH",
+            "tagIds": [
+                "saas",
+                "dxp"
+            ],
+            "careerPageUrl": "https://careers.optimizely.com/search/?createNewAlert=false&q=&locationsearch=Dhaka&optionsFacetsDD_department=&optionsFacetsDD_country="
+        },
+        {
+            "id": "00000007",
+            "name": "Relisource",
+            "location": "DHAKA, BANGLADESH",
+            "tagIds": [
+                "software",
+                "healthcare",
+                "logistics"
+            ],
+            "careerPageUrl": "https://www.relisource.com/careers/"
+        },
+        {
+            "id": "00000008",
+            "name": "Selise",
+            "location": "DHAKA, BANGLADESH",
+            "tagIds": [
+                "software",
+                "consulting"
+            ],
+            "careerPageUrl": "https://selisegroup.com/about-us/#selise-career"
+        },
+        {
+            "id": "00000009",
+            "name": "SSL Wireless",
+            "location": "DHAKA, BANGLADESH",
+            "tagIds": [
+                "fintech",
+                "telecom"
+            ],
+            "careerPageUrl": "https://sslwireless.com/jobs/"
+        },
+        {
+            "id": "00000010",
+            "name": "Therap",
+            "location": "DHAKA, BANGLADESH",
+            "tagIds": [
+                "healthcare",
+                "saas"
+            ],
+            "careerPageUrl": "https://therap.hire.trakstar.com/"
+        }
+    ]
+}
