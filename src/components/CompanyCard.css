@@ -1,0 +1,14 @@
+.company-card {
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.company-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px #000;
+}
+
+/* Specific size for company card title */
+.company-card .card-title {
+    font-size: 1.8rem;
+}
