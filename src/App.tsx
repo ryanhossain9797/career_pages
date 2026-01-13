@@ -27,7 +27,7 @@ function App() {
       <main className="grid">
         <section className="card large">
           <div className="card-id">CATALOG / {CURRENT_YEAR}</div>
-          <h2 className="card-title" style={{ fontSize: '3rem' }}>BANGLADESH ENGINEERING CAREER PAGES</h2>
+          <h2 className="card-title">BANGLADESH ENGINEERING CAREER PAGES</h2>
           <div className="card-subtitle">A curated directory of engineering opportunities.</div>
         </section>
 
