@@ -4,8 +4,8 @@ import { CompanyCard } from './components/CompanyCard'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { SearchBar } from './components/SearchBar'
+import { Hero } from './components/Hero'
 import { DATA_URL, type PageData } from './data/companies'
-import { CURRENT_YEAR } from './constants/app'
 
 function App() {
   const [data, setData] = useState<PageData | null>(null)
@@ -41,52 +41,42 @@ function App() {
     return matchesName && matchesTags
   }) || []
 
-  if (loading || error) {
-    return (
-      <div className="container">
-        <Header />
-        <main>
-          <div className="card large">
-            <div className="card-subtitle">
-              {loading ? 'LOADING OPPORTUNITIES...' : `ERROR: ${error}`}
-            </div>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    )
-  }
-
   return (
     <div className="container">
       <Header />
 
       <main>
-        <div className="grid">
-          <section className="card large">
-            <div className="card-id">CATALOG / {CURRENT_YEAR}</div>
-            <h2 className="card-title">BANGLADESH ENGINEERING CAREER PAGES</h2>
-            <div className="card-subtitle">A curated directory of engineering opportunities.</div>
-          </section>
-        </div>
+        <Hero />
 
-        <SearchBar
-          nameSearch={nameSearch}
-          setNameSearch={setNameSearch}
-          tagSearch={tagSearch}
-          setTagSearch={setTagSearch}
-        />
-
-        <div className="grid">
-          {filteredCompanies.map((company, index) => (
-            <CompanyCard key={index} company={company} id={index + 1} tags={data?.tags || []} />
-          ))}
-          {filteredCompanies.length === 0 && (
-            <div className="card large" style={{ borderStyle: 'dashed', minHeight: '100px', opacity: 0.5 }}>
-              <div className="card-subtitle">NO COMPANIES MATCH YOUR SEARCH CRITERIA.</div>
+        {loading || error ? (
+          <div className="grid" style={{ marginTop: '1.5rem' }}>
+            <div className="card large" style={{ borderStyle: 'dashed', opacity: 0.5 }}>
+              <div className="card-subtitle">
+                {loading ? 'LOADING OPPORTUNITIES...' : `ERROR: ${error}`}
+              </div>
             </div>
-          )}
-        </div>
+          </div>
+        ) : (
+          <>
+            <SearchBar
+              nameSearch={nameSearch}
+              setNameSearch={setNameSearch}
+              tagSearch={tagSearch}
+              setTagSearch={setTagSearch}
+            />
+
+            <div className="grid">
+              {filteredCompanies.map((company, index) => (
+                <CompanyCard key={index} company={company} id={index + 1} tags={data?.tags || []} />
+              ))}
+              {filteredCompanies.length === 0 && (
+                <div className="card large" style={{ borderStyle: 'dashed', minHeight: '100px', opacity: 0.5 }}>
+                  <div className="card-subtitle">NO COMPANIES MATCH YOUR SEARCH CRITERIA.</div>
+                </div>
+              )}
+            </div>
+          </>
+        )}
       </main>
 
       <Footer />
@@ -95,5 +85,6 @@ function App() {
 }
 
 export default App
+
 
 
