@@ -7,62 +7,75 @@ export const tags: Tag[] = [
     { id: 'saas', label: 'SAAS' },
     { id: 'fintech', label: 'FINTECH' },
     { id: 'consulting', label: 'CONSULTING' },
+    { id: 'marketplace', label: 'MARKETPLACE' },
+    { id: 'data', label: 'DATA & ANALYTICS' },
+    { id: 'dxp', label: 'DXP' },
+    { id: 'telecom', label: 'TELECOM' },
+    { id: 'ecommerce', label: 'ECOMMERCE' },
+    { id: 'logistics', label: 'LOGISTICS' },
+    { id: 'retail', label: 'RETAIL' },
 ]
 
 const rawCompanies = [
     {
         name: 'Cefalo',
         location: 'DHAKA, BANGLADESH',
-        tagIds: [],
+        tagIds: ['software', 'offshore', 'consulting'],
         careerPageUrl: 'https://career.cefalo.com/#jobList'
     },
     {
         name: 'Enosis',
         location: 'DHAKA, BANGLADESH',
-        tagIds: [],
+        tagIds: ['software', 'offshore'],
         careerPageUrl: 'https://enosisbd.pinpointhq.com/#js-careers-jobs-block'
     },
     {
         name: 'Field nation',
         location: 'DHAKA, BANGLADESH',
-        tagIds: [],
+        tagIds: ['saas', 'marketplace'],
         careerPageUrl: 'https://jobs.lever.co/fieldnation?location=Dhaka&commitment=Full-time&department=&team=Software%20Development'
     },
     {
         name: 'IQVIA',
         location: 'DHAKA, BANGLADESH',
-        tagIds: [],
+        tagIds: ['healthcare', 'data'],
         careerPageUrl: 'https://jobs.iqvia.com/en/jobs?categories=IT+Infrastructure,IT+Design+and+Development,Software+Development+Engineering&locations=Bangladesh'
     },
     {
         name: 'Optimizely',
         location: 'DHAKA, BANGLADESH',
-        tagIds: [],
+        tagIds: ['saas', 'dxp'],
         careerPageUrl: 'https://careers.optimizely.com/search/?createNewAlert=false&q=&locationsearch=Dhaka&optionsFacetsDD_department=&optionsFacetsDD_country='
     },
     {
         name: 'Selise',
         location: 'DHAKA, BANGLADESH',
-        tagIds: [],
+        tagIds: ['software', 'consulting'],
         careerPageUrl: 'https://selisegroup.com/about-us/#selise-career'
     },
     {
         name: 'SSL Wireless',
         location: 'DHAKA, BANGLADESH',
-        tagIds: [],
+        tagIds: ['fintech', 'telecom'],
         careerPageUrl: 'https://sslwireless.com/jobs/'
     },
     {
         name: 'Therap',
         location: 'DHAKA, BANGLADESH',
-        tagIds: [],
+        tagIds: ['healthcare', 'saas'],
         careerPageUrl: 'https://therap.hire.trakstar.com/'
     },
     {
         name: 'Relisource',
         location: 'DHAKA, BANGLADESH',
-        tagIds: [],
+        tagIds: ['software', 'healthcare', 'logistics'],
         careerPageUrl: 'https://www.relisource.com/careers/'
+    },
+    {
+        name: 'Chaldal',
+        location: 'DHAKA, BANGLADESH',
+        tagIds: ['ecommerce', 'logistics', 'retail'],
+        careerPageUrl: 'https://chaldal.tech/'
     }
 ]
 
