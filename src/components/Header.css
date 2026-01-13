@@ -1,0 +1,43 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem;
+    font-family: 'Space Mono', monospace;
+}
+
+.logo {
+    font-weight: 900;
+    font-size: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    background: var(--color-fg);
+    color: var(--color-bg);
+    padding: 0 4px;
+}
+
+nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-icons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.icon-box {
+    border: var(--border-width-medium) var(--border-style) var(--border-color);
+    padding: 2px 6px;
+    font-size: 0.8rem;
+}

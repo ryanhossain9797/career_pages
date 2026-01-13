@@ -1,3 +1,5 @@
+import './SearchBar.css'
+
 interface SearchBarProps {
     nameSearch: string
     setNameSearch: (value: string) => void

@@ -1,4 +1,5 @@
 import { CURRENT_YEAR } from '../constants/app'
+import './Footer.css'
 
 export function Footer() {
     return (
