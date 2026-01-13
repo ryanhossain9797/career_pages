@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import './Home.css'
 import { CompanyCard } from '../components/CompanyCard'
 import { SearchBar } from '../components/SearchBar'
 import { Hero } from '../components/Hero'
