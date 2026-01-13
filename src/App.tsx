@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import { CompanyCard } from './components/CompanyCard'
+import { Header } from './components/Header'
+import { Footer } from './components/Footer'
+import { SearchBar } from './components/SearchBar'
 import { DATA_URL, type PageData } from './data/companies'
 import { CURRENT_YEAR } from './constants/app'
 
@@ -38,24 +41,25 @@ function App() {
     return matchesName && matchesTags
   }) || []
 
-  if (loading) return <div className="container"><main><div className="card large"><div className="card-subtitle">LOADING OPPORTUNITIES...</div></div></main></div>
-  if (error) return <div className="container"><main><div className="card large"><div className="card-subtitle" style={{ color: 'red' }}>ERROR: {error}</div></div></main></div>
+  if (loading || error) {
+    return (
+      <div className="container">
+        <Header />
+        <main>
+          <div className="card large">
+            <div className="card-subtitle">
+              {loading ? 'LOADING OPPORTUNITIES...' : `ERROR: ${error}`}
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    )
+  }
 
   return (
     <div className="container">
-      <header>
-        <div className="logo">
-          BD <span>ENG</span> CAREERS
-        </div>
-        <nav>
-          <div className="nav-links">
-            <a href="#">COMPANIES</a>
-          </div>
-          <div className="nav-icons">
-            <div className="icon-box">EN</div>
-          </div>
-        </nav>
-      </header>
+      <Header />
 
       <main>
         <div className="grid">
@@ -66,22 +70,12 @@ function App() {
           </section>
         </div>
 
-        <div className="search-grid">
-          <input
-            type="text"
-            placeholder="FILTER BY NAME..."
-            className="search-input"
-            value={nameSearch}
-            onChange={(e) => setNameSearch(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="FILTER BY TAGS (comma-seperated)..."
-            className="search-input"
-            value={tagSearch}
-            onChange={(e) => setTagSearch(e.target.value)}
-          />
-        </div>
+        <SearchBar
+          nameSearch={nameSearch}
+          setNameSearch={setNameSearch}
+          tagSearch={tagSearch}
+          setTagSearch={setTagSearch}
+        />
 
         <div className="grid">
           {filteredCompanies.map((company, index) => (
@@ -95,14 +89,11 @@ function App() {
         </div>
       </main>
 
-      <footer>
-        <div className="footer-item" style={{ gridColumn: 'span 2' }}>
-          <div className="copyright">COPYRIGHT © {CURRENT_YEAR} BD ENG CAREERS. ALL RIGHTS RESERVED.</div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
 
 export default App
+
 
