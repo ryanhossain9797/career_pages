@@ -12,13 +12,7 @@ function App() {
   const [tagSearch, setTagSearch] = useState('')
 
   useEffect(() => {
-    fetch(`${DATA_URL}?t=${Date.now()}`, {
-      cache: 'no-store',
-      headers: {
-        'Cache-Control': 'no-cache',
-        'Pragma': 'no-cache'
-      }
-    })
+    fetch(`${DATA_URL}?t=${Date.now()}`)
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch data')
         return res.json()
