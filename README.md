@@ -1,6 +1,10 @@
 # BD Engineering Career Pages
 
+[**Live Site**](https://ryanhossain9797.github.io/career_pages/)
+
 A curated directory of engineering career pages for companies in Bangladesh. This site aims to help software engineers and tech professionals find job opportunities by providing a centralized list of career portals.
+
+![Sample Screenshot](./sample.png)
 
 ## 🚀 Features
 
