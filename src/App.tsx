@@ -5,6 +5,7 @@ import { Footer } from './components/Footer'
 import { Home } from './pages/Home'
 import { Suggest } from './pages/Suggest'
 import { DataProvider } from './context/DataContext'
+import { CompanyReviews } from './pages/CompanyReviews'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/suggest" element={<Suggest />} />
+              <Route path="/reviews/:companyName" element={<CompanyReviews />} />
             </Routes>
           </main>
 
