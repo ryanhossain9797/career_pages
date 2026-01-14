@@ -1,5 +1,4 @@
 import type { Company, Tag } from '../types/company'
-import { Link } from 'react-router-dom'
 import './CompanyCard.css'
 
 interface CompanyCardProps {
@@ -29,9 +28,14 @@ export function CompanyCard({ company, id, tags }: CompanyCardProps) {
                         CAREER PAGE ↗
                     </a>
                 )}
-                <Link to={`/reviews/${encodeURIComponent(company.name)}`} className="tag link">
-                    REVIEWS ↗
-                </Link>
+                <a
+                    href={`https://deshimula.com/stories/1?SearchTerm=${encodeURIComponent(company.name)}&Vibe=0`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="tag link"
+                >
+                    DESHIMULA ↗
+                </a>
             </div>
         </section>
     )

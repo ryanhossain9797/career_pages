@@ -128,8 +128,6 @@ export function CompanyReviews() {
                                 READ MORE ON DESHIMULA →
                             </a>
                         )}
-
-                        {/* Removed debug button as we are confident in the fix */}
                     </div>
                 ))}
             </div>
