@@ -1,32 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import './Home.css'
 import { CompanyCard } from '../components/CompanyCard'
 import { SearchBar } from '../components/SearchBar'
 import { Hero } from '../components/Hero'
-import { DATA_URL, type PageData } from '../data/companies'
+import { useData } from '../context/DataContext'
 
 export function Home() {
-    const [data, setData] = useState<PageData | null>(null)
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState<string | null>(null)
+    const { data, loading, error } = useData()
     const [nameSearch, setNameSearch] = useState('')
     const [tagSearch, setTagSearch] = useState('')
-
-    useEffect(() => {
-        fetch(`${DATA_URL}?t=${Date.now()}`)
-            .then(res => {
-                if (!res.ok) throw new Error('Failed to fetch data')
-                return res.json()
-            })
-            .then(json => {
-                setData(json)
-                setLoading(false)
-            })
-            .catch(err => {
-                setError(err.message)
-                setLoading(false)
-            })
-    }, [])
 
     const filteredCompanies = [...(data?.companies || [])]
         .filter(company => {

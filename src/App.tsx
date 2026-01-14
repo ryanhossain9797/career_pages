@@ -4,23 +4,26 @@ import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { Home } from './pages/Home'
 import { Suggest } from './pages/Suggest'
+import { DataProvider } from './context/DataContext'
 
 function App() {
   return (
-    <Router>
-      <div className="container">
-        <Header />
+    <DataProvider>
+      <Router>
+        <div className="container">
+          <Header />
 
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/suggest" element={<Suggest />} />
-          </Routes>
-        </main>
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/suggest" element={<Suggest />} />
+            </Routes>
+          </main>
 
-        <Footer />
-      </div>
-    </Router>
+          <Footer />
+        </div>
+      </Router>
+    </DataProvider>
   )
 }
 
