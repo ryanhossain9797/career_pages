@@ -1,8 +1,14 @@
 .grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 1.5rem;
     align-items: start;
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 .card {
@@ -17,14 +23,25 @@
 }
 
 .card.large {
-    grid-column: span 2;
     min-height: 150px;
     justify-content: center;
 }
 
+@media (min-width: 768px) {
+    .card.large {
+        grid-column: span 2;
+    }
+}
+
 .card.large .card-title {
-    font-size: 3rem;
+    font-size: 2rem;
     margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+    .card.large .card-title {
+        font-size: 3rem;
+    }
 }
 
 .card-id {

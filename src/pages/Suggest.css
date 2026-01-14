@@ -47,6 +47,14 @@
     letter-spacing: 1px;
     transition: all 0.2s ease;
     text-transform: uppercase;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .suggest-button {
+        display: block;
+        width: 100%;
+    }
 }
 
 .suggest-button:hover {

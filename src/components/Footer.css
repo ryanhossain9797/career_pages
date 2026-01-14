@@ -1,8 +1,14 @@
 footer {
     margin-top: 1.5rem;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    footer {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 .footer-item {
