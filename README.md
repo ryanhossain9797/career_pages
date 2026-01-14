@@ -1,73 +1,65 @@
-# React + TypeScript + Vite
+# BD Engineering Career Pages
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A curated directory of engineering career pages for companies in Bangladesh. This site aims to help software engineers and tech professionals find job opportunities by providing a centralized list of career portals.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Curated Directory**: A list of tech companies operating in Bangladesh with direct links to their official career pages.
+- **Search & Filter**: Search by company name or filter by tags (e.s., Technology, Industry, Job Type).
+- **Contribution-First**: Users can suggest new companies or updates via the "Suggest" page.
+- **Dynamic Data**: Fetches the latest company list from a GitHub Gist, ensuring the catalog stays up-to-date without needing a full site redeploy.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 18**: Frontend library.
+- **TypeScript**: For type safety and better developer experience.
+- **Vite**: Modern build tool for fast development.
+- **CSS3**: Custom design with a focus on minimalism and readability.
 
-## Expanding the ESLint configuration
+## 📦 Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js (v18 or higher)
+- npm or yarn
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ryanhossain9797/career_pages.git
+   ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+4. Build for production:
+   ```bash
+   npm run build
+   ```
+
+## 🤝 Contributing
+
+Contributions are welcome! If you know of a company that is missing or find incorrect information:
+
+1. Visit the **Suggest** page on the website.
+2. Follow the link to the official GitHub Gist.
+3. Leave a comment with the company details or the correction needed.
+
+Alternatively, you can open an issue or submit a pull request if you want to contribute to the codebase itself.
+
+## 📊 Data Source
+
+The site data is hosted on GitHub Gist to allow for easy updates:
+[Career Page Data Gist](https://gist.github.com/ryanhossain9797/8e53fb3e3e0812ec499ac5caeb9b642f)
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
