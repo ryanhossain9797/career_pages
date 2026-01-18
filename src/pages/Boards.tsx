@@ -32,19 +32,23 @@ export function Boards() {
                         <h2 className="section-title">{BOARD_TYPE_LABELS[Number(type) as BoardType]}</h2>
                         <div className="grid">
                             {typeBoards.map((board, index) => (
-                                <a
+                                <section
                                     key={index}
-                                    href={board.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
                                     className="card board-card"
                                 >
                                     <div className="card-id">BOARD_{String(index + 1).padStart(3, '0')}</div>
                                     <h3 className="card-title">{board.name}</h3>
                                     <div className="card-tags">
-                                        <span className="tag link">VISIT LINK ↗</span>
+                                        <a
+                                            href={board.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="tag link"
+                                        >
+                                            VISIT LINK ↗
+                                        </a>
                                     </div>
-                                </a>
+                                </section>
                             ))}
                         </div>
                     </section>

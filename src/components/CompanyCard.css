@@ -1,10 +1,9 @@
 .company-card {
-    cursor: pointer;
     transition: transform 0.1s;
 }
 
 .company-card:hover {
-    transform: translate(-2px, -2px);
+    transform: translate(-4px, -4px);
     box-shadow: 4px 4px 0px var(--color-fg);
 }
 
