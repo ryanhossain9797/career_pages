@@ -28,14 +28,14 @@ export function CompanyCard({ company, id, tags }: CompanyCardProps) {
                         CAREER PAGE ↗
                     </a>
                 )}
-                <a
+                {/* <a
                     href={`https://deshimula.com/stories/1?SearchTerm=${encodeURIComponent(company.name)}&Vibe=0`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="tag link"
                 >
                     DESHIMULA ↗
-                </a>
+                </a> */}
             </div>
         </section>
     )
