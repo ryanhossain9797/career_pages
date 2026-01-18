@@ -1,0 +1,57 @@
+.boards-container {
+    padding-bottom: 4rem;
+}
+
+.boards-header {
+    margin-bottom: 3rem;
+    border-bottom: var(--border-full);
+    padding-bottom: 2rem;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 0.9;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--color-muted);
+}
+
+.board-section {
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    background: var(--color-fg);
+    color: var(--color-bg);
+    display: inline-block;
+    padding: 4px 12px;
+}
+
+.board-card {
+    transition: transform 0.1s ease;
+}
+
+.board-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 4px 4px 0px var(--color-fg);
+}
+
+.board-card .card-title {
+    font-size: 1.8rem;
+    margin: 1rem 0;
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+}
