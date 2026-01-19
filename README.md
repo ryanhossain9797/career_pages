@@ -1,6 +1,6 @@
 # BD Engineering Career Pages
 
-[**Live Site**](https://ryanhossain9797.github.io/career_pages/)
+[**Live Site**](https://career-pages-bd.vercel.app/)
 
 A curated directory of engineering career pages for companies in Bangladesh. This site aims to help software engineers and tech professionals find job opportunities by providing a centralized list of career portals.
 
@@ -9,23 +9,27 @@ A curated directory of engineering career pages for companies in Bangladesh. Thi
 ## 🚀 Features
 
 - **Curated Directory**: A list of tech companies operating in Bangladesh with direct links to their official career pages.
-- **Search & Filter**: Search by company name or filter by tags (e.s., Technology, Industry, Job Type).
+- **Search & Filter**: Search by company name or filter by tags (e.g., Technology, Industry, Job Type).
 - **Contribution-First**: Users can suggest new companies or updates via the "Suggest" page.
-- **Dynamic Data**: Fetches the latest company list from a GitHub Gist, ensuring the catalog stays up-to-date without needing a full site redeploy.
+- **Serverless Backend**: Uses Vercel Functions to securely proxy data from Cloud Firestore.
+- **Dynamic Data**: Powered by Google Cloud Firestore, ensuring the catalog stays up-to-date in real-time.
 
 ## 🛠️ Tech Stack
 
-- **React 18**: Frontend library.
-- **TypeScript**: For type safety and better developer experience.
-- **Vite**: Modern build tool for fast development.
-- **CSS3**: Custom design with a focus on minimalism and readability.
+- **Frontend**: React 19 (Vite)
+- **Backend**: Vercel Functions (Node.js)
+- **Database**: Cloud Firestore
+- **Language**: TypeScript
+- **Styling**: Vanilla CSS (Modern Brutalist aesthetic)
 
 ## 📦 Getting Started
 
 ### Prerequisites
 
-- Node.js (v18 or higher)
+- Node.js (v22 or higher)
 - npm or yarn
+- [Firebase CLI](https://firebase.google.com/docs/cli) (optional, for DB management)
+- [Vercel CLI](https://vercel.com/docs/cli) (optional, for local serverless development)
 
 ### Installation
 
@@ -39,12 +43,15 @@ A curated directory of engineering career pages for companies in Bangladesh. Thi
    npm install
    ```
 
-3. Start the development server:
+3. Configure Environment Variables:
+   Create a `.env` file based on `.env.example` (if present) or set up your Firebase Service Account keys in the Vercel dashboard.
+
+4. Start the development server:
    ```bash
    npm run dev
    ```
 
-4. Build for production:
+5. Build for production:
    ```bash
    npm run build
    ```
@@ -54,15 +61,9 @@ A curated directory of engineering career pages for companies in Bangladesh. Thi
 Contributions are welcome! If you know of a company that is missing or find incorrect information:
 
 1. Visit the **Suggest** page on the website.
-2. Follow the link to the official GitHub Gist.
-3. Leave a comment with the company details or the correction needed.
+2. Follow the instructions to suggest changes.
 
 Alternatively, you can open an issue or submit a pull request if you want to contribute to the codebase itself.
-
-## 📊 Data Source
-
-The site data is hosted on GitHub Gist to allow for easy updates:
-[Career Page Data Gist](https://gist.github.com/ryanhossain9797/8e53fb3e3e0812ec499ac5caeb9b642f)
 
 ## 📄 License
 

@@ -5,16 +5,20 @@ This document provides a concise overview of the project architecture, data flow
 ## Tech Stack
 - **Framework**: React 19 (Vite)
 - **Language**: TypeScript
-- **Routing**: React Router 7 (HashRouter for GitHub Pages compatibility)
+- **Hosting**: Vercel (Production)
+- **Backend**: Vercel Functions (Node.js)
+- **Database**: Cloud Firestore
+- **Routing**: React Router 7 (Uses standard browser routing on Vercel, legacy HashRouter for GitHub Pages redirect)
 - **Styling**: Vanilla CSS (Modern Brutalist aesthetic)
-- **Data Fetching**: Native `fetch` with React Context
+- **Data Fetching**: Native `fetch` calling internal API routes
 
 ## Core Architecture
 
-### 1. Data Layer (`src/data`, `src/context`)
-- **Source**: Data is hosted externally on a GitHub Gist as a JSON file.
-- **Configuration**: The URL is defined in `src/data/companies.ts`.
-- **Management**: `src/context/DataContext.tsx` fetches logic and provides `data`, `loading`, and `error` states globally.
+### 1. Data Layer (`api/`, `src/context/`)
+- **Source**: Data is stored in Cloud Firestore.
+- **Backend API**: `api/data.ts` is a Vercel serverless function that uses `firebase-admin` to fetch data securely from Firestore.
+- **Frontend Management**: `src/context/DataContext.tsx` fetches from `/api/data` and provides `data`, `loading`, and `error` states globally.
+- **Environment Variables**: Firestore credentials (Service Account) are managed as Vercel Environment Variables (`FIREBASE_PROJECT_ID`, etc.).
 - **Types**: All domain types (Company, Tag, Board) are defined in `src/types/company.ts`.
 
 ### 2. Styling System (`src/index.css`)
@@ -32,6 +36,7 @@ This document provides a concise overview of the project architecture, data flow
 - **Proxy**: Uses `api.allorigins.win` as a CORS proxy to fetch external content from the client.
 
 ## Project Structure
+- `api/`: Vercel Serverless Functions (Backend API).
 - `src/components`: Reusable UI elements (Header, Footer, CompanyCard, etc.).
 - `src/pages`: Page-level components and their specific styles.
 - `src/types`: TypeScript interfaces and enums.
@@ -44,4 +49,4 @@ This document provides a concise overview of the project architecture, data flow
 - **Keep it concise**: Ensure another LLM can read this in one `view_file` call and get a high-level map of the codebase.
 
 ---
-*Created on 2026-01-18*
+*Created on 2026-01-18 | Updated on 2026-01-19 (Migration to Vercel/Firestore)*
