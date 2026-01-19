@@ -29,22 +29,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-      - name: Install dependencies
-        run: npm install
-      - name: Build
-        run: npm run build
+      - name: Create Redirect Page
+        run: |
+          mkdir -p redirect
+          echo '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Redirecting...</title><meta http-equiv="refresh" content="0; url=https://career-pages-bd.vercel.app/"><link rel="canonical" href="https://career-pages-bd.vercel.app/"><script type="text/javascript">window.location.href = "https://career-pages-bd.vercel.app/"</script></head><body><p>Redirecting to <a href="https://career-pages-bd.vercel.app/">https://career-pages-bd.vercel.app/</a>...</p></body></html>' > redirect/index.html
+          cp redirect/index.html redirect/404.html
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload the dist folder
-          path: './dist'
+          path: './redirect'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
