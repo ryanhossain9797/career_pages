@@ -1,8 +1,5 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react'
-import { collection, getDocs } from 'firebase/firestore'
-import { db } from '../lib/firebase'
 import type { PageData } from '../data/companies'
-import type { Company, Tag, Board } from '../types/company'
 
 interface DataContextType {
     data: PageData | null
@@ -20,25 +17,16 @@ export function DataProvider({ children }: { children: ReactNode }) {
     useEffect(() => {
         async function fetchData() {
             try {
-                // Fetch all collections in parallel
-                const [companiesSnap, tagsSnap, boardsSnap] = await Promise.all([
-                    getDocs(collection(db, 'companies')),
-                    getDocs(collection(db, 'tags')),
-                    getDocs(collection(db, 'boards'))
-                ])
+                const response = await fetch('/api/data')
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch: ${response.statusText}`)
+                }
 
-                const companies = companiesSnap.docs.map(doc => doc.data() as Company)
-                const tags = tagsSnap.docs.map(doc => doc.data() as Tag)
-                const boards = boardsSnap.docs.map(doc => doc.data() as Board)
-
-                setData({
-                    companies,
-                    tags,
-                    boards: boards.length > 0 ? boards : undefined
-                })
+                const json = await response.json()
+                setData(json)
                 setLoading(false)
             } catch (err: any) {
-                console.error('Error fetching data from Firestore:', err)
+                console.error('Error fetching data from Vercel API:', err)
                 setError(err.message || 'Failed to fetch data')
                 setLoading(false)
             }
