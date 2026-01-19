@@ -1,4 +1,5 @@
 import { Link, NavLink } from 'react-router-dom'
+import { UserMenu } from './UserMenu'
 import './Header.css'
 
 export function Header() {
@@ -14,7 +15,7 @@ export function Header() {
                     <NavLink to="/suggest">SUGGEST</NavLink>
                 </div>
                 <div className="nav-icons">
-                    <div className="icon-box">EN</div>
+                    <UserMenu />
                 </div>
             </nav>
         </header>
