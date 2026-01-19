@@ -1,19 +1,37 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import * as admin from 'firebase-admin';
+import { getApps, initializeApp, cert } from 'firebase-admin/app';
+import { getFirestore } from 'firebase-admin/firestore';
 
 // Initialize Firebase Admin if not already initialized
-if (!admin.apps.length) {
-    admin.initializeApp({
-        credential: admin.credential.cert({
-            projectId: process.env.FIREBASE_PROJECT_ID,
-            clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-            // Replace escaped newlines if they exist
-            privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-        }),
-    });
+const apps = getApps();
+if (!apps.length) {
+    const projectId = process.env.FIREBASE_PROJECT_ID;
+    const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+    const privateKey = process.env.FIREBASE_PRIVATE_KEY;
+
+    if (!projectId || !clientEmail || !privateKey) {
+        console.error('Missing Firebase environment variables:', {
+            projectId: !!projectId,
+            clientEmail: !!clientEmail,
+            privateKey: !!privateKey
+        });
+    } else {
+        try {
+            initializeApp({
+                credential: cert({
+                    projectId,
+                    clientEmail,
+                    privateKey: privateKey.replace(/\\n/g, '\n'),
+                }),
+            });
+            console.log('Firebase Admin initialized successfully');
+        } catch (error) {
+            console.error('Failed to initialize Firebase Admin:', error);
+        }
+    }
 }
 
-const db = admin.firestore();
+const db = getFirestore();
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Enable CORS
