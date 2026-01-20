@@ -23,9 +23,14 @@ export function CompanyCard({ company, id, tags }: CompanyCardProps) {
                         </span>
                     );
                 })}
-                {company.careerPageUrl && (
+                {company.careerPageUrl && company.careerPageUrl.trim() !== "" && (
                     <a href={company.careerPageUrl} target="_blank" rel="noopener noreferrer" className="tag link">
                         CAREER PAGE ↗
+                    </a>
+                )}
+                {company.linkedinUrl && company.linkedinUrl.trim() !== "" && (
+                    <a href={company.linkedinUrl} target="_blank" rel="noopener noreferrer" className="tag link">
+                        LINKEDIN ↗
                     </a>
                 )}
                 {/* <a

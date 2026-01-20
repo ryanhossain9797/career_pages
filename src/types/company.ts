@@ -8,6 +8,7 @@ export interface Company {
     location: string
     tagIds: string[]
     careerPageUrl?: string
+    linkedinUrl?: string
 }
 
 export const BoardType = {
