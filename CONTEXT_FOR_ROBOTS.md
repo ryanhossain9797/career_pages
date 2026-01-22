@@ -9,7 +9,7 @@ This document provides a concise overview of the project architecture, data flow
 - **Backend**: Vercel Functions (Node.js)
 - **Database**: Cloud Firestore
 - **Routing**: React Router 7 (Uses standard browser routing on Vercel, legacy HashRouter for GitHub Pages redirect)
-- **Styling**: Vanilla CSS (Modern Brutalist aesthetic)
+- **Styling**: Vanilla CSS (Industrial Rally aesthetic)
 - **Data Fetching**: Native `fetch` calling internal API routes
 - **Authentication**: Firebase Auth (Google Provider) using Client SDK
 
@@ -27,8 +27,9 @@ This document provides a concise overview of the project architecture, data flow
 - **Types**: Domain types are in `src/types/company.ts`.
 
 ### 2. Styling System (`src/index.css`)
-- Uses CSS custom properties (variables) for a consistent design system (borders, colors, spacing).
-- **Aesthetic**: Heavy borders (`var(--border-full)`), monospaced fonts for metadata, and high-contrast black/white palette with a specific error accent (`var(--color-error)` #CD664D).
+- Uses CSS custom properties for a high-contrast, "Industrial Rally" design system.
+- **Aesthetic**: Deep black background (`#121212`), with vibrant orange (`#FF5200`) and beige (`#E6DCCD`) cards. No borders.
+- **Typography and colors**: White text on background, dark text on cards. Error accent is preserved (`#CD664D`).
 - **Responsive Layouts**: 
     - **Grid**: Shared `.grid` class for cards.
     - **Header**: Uses a 2-row layout on mobile (Logo/Auth on top, Nav Tabs below).

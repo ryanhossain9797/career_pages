@@ -21,17 +21,20 @@
 }
 
 .card.large.error {
+    border-width: 2px;
     border-style: dashed;
     border-color: var(--color-error);
     color: var(--color-error);
 }
 
 .card.large.loading {
+    border-width: 2px;
     border-style: dashed;
     opacity: 0.5;
 }
 
 .card.large.empty {
+    border-width: 2px;
     border-style: dashed;
     min-height: 100px;
     opacity: 0.5;

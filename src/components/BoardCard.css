@@ -1,10 +1,10 @@
 .board-card {
-    transition: transform 0.1s ease;
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .board-card:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 4px 4px 0px var(--color-fg);
+    transform: translateY(-8px);
+    /* No shadow, just lift */
 }
 
 .board-card .card-title {
@@ -14,6 +14,8 @@
 
 .board-card.broken {
     background-color: var(--color-error);
+    color: white;
+    /* Ensure readability */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,4 +31,5 @@
 .board-card.broken .broken-subtitle {
     font-size: 0.8rem;
     margin-top: 0.5rem;
+    opacity: 0.9;
 }

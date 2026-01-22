@@ -11,7 +11,6 @@
     width: 32px;
     height: 32px;
     padding: 0;
-    border: var(--border-width-thin) solid var(--color-fg);
     background: var(--color-bg);
     cursor: pointer;
     display: flex;
@@ -19,16 +18,14 @@
     justify-content: center;
     overflow: hidden;
     transition: all 0.1s ease;
+    border: none;
+    outline: 2px solid #333;
+    /* subtle outline instead of border */
 }
 
 .user-avatar-btn:hover {
-    transform: translate(-1px, -1px);
-    box-shadow: 2px 2px 0px var(--color-fg);
-}
-
-.user-avatar-btn:active {
-    transform: translate(0, 0);
-    box-shadow: none;
+    transform: scale(1.1);
+    outline-color: var(--color-orange);
 }
 
 .avatar-img {
@@ -48,12 +45,12 @@
     position: absolute;
     top: calc(100% + 12px);
     right: 0;
-    background: var(--color-bg);
-    border: var(--border-width-thin) solid var(--color-fg);
+    background: #1a1a1a;
+    /* Dark Grey to stand out from Black bg */
     padding: 1rem;
     min-width: 220px;
     z-index: 1000;
-    box-shadow: 6px 6px 0px var(--color-fg);
+    /* No shadow, flat design */
 }
 
 .user-info {
@@ -61,7 +58,7 @@
     flex-direction: column;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
-    border-bottom: var(--border-width-thin) solid var(--color-fg);
+    border-bottom: 1px solid #333;
 }
 
 .user-name {
@@ -70,12 +67,14 @@
     font-size: 0.9rem;
     word-break: break-all;
     text-transform: uppercase;
+    color: var(--color-fg);
 }
 
 .user-email {
     font-size: 0.75rem;
     opacity: 0.7;
     word-break: break-all;
+    color: var(--color-muted);
 }
 
 .logout-btn {
@@ -92,32 +91,35 @@
 }
 
 .logout-btn:hover {
-    opacity: 0.8;
+    background: var(--color-error);
+    /* Red logout on hover */
+    color: white;
 }
 
 .login-btn {
     background: var(--color-bg);
     color: var(--color-fg);
-    border: var(--border-width-thin) solid var(--color-fg);
-    padding: 2px 8px;
+    border: none;
+    padding: 4px 12px;
     font-family: 'Space Mono', monospace;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 700;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    transition: all 0.1s ease;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
 }
 
 .login-btn::before {
     content: "■";
     font-size: 0.6rem;
+    color: var(--color-orange);
 }
 
 .login-btn:hover {
-    background: var(--color-fg);
-    color: var(--color-bg);
+    color: var(--color-orange);
 }
 
 @media (max-width: 600px) {

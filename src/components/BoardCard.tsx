@@ -1,5 +1,6 @@
 import type { Board } from '../types/company'
 import './BoardCard.css'
+import { getCardVariant } from '../lib/visuals'
 
 interface BoardCardProps {
     board: Board
@@ -9,6 +10,7 @@ interface BoardCardProps {
 export function BoardCard({ board, index }: BoardCardProps) {
     const isBroken = !board.name || !board.url;
     const displayId = `BOARD_${String(index + 1).padStart(3, '0')}`;
+    const variantClass = getCardVariant(index);
 
     if (isBroken) {
         return (
@@ -24,7 +26,7 @@ export function BoardCard({ board, index }: BoardCardProps) {
     }
 
     return (
-        <section className="card board-card">
+        <section className={`card board-card ${variantClass}`}>
             <div className="card-id">{displayId}</div>
             <h3 className="card-title">{board.name}</h3>
             <div className="card-tags">

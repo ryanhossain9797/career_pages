@@ -16,20 +16,6 @@
     padding: 4px 12px;
 }
 
-.board-card {
-    transition: transform 0.1s ease;
-}
-
-.board-card:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 4px 4px 0px var(--color-fg);
-}
-
-.board-card .card-title {
-    font-size: 1.8rem;
-    margin: 1rem 0;
-}
-
 @media (max-width: 768px) {
     .hero-title {
         font-size: 2.5rem;
@@ -37,17 +23,20 @@
 }
 
 .card.large.error {
+    border-width: 2px;
     border-style: dashed;
     border-color: var(--color-error);
     color: var(--color-error);
 }
 
 .card.large.loading {
+    border-width: 2px;
     border-style: dashed;
     opacity: 0.5;
 }
 
 .card.large.empty {
+    border-width: 2px;
     border-style: dashed;
     opacity: 0.5;
 }

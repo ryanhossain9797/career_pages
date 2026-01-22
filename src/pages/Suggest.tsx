@@ -5,7 +5,7 @@ export function Suggest() {
         <div className="suggest-container">
             <div className="card large">
                 <div className="card-subtitle">CONTRIBUTE TO BD ENG CAREERS</div>
-                <h2 style={{ color: 'var(--text-color)', marginBottom: '1.5rem' }}>Suggest a Change or Addition</h2>
+                <h2 style={{ marginBottom: '1.5rem', fontSize: '2rem' }}>Suggest a Change or Addition</h2>
 
                 <p style={{ opacity: 0.8, lineHeight: '1.6', marginBottom: '2rem' }}>
                     We want to keep this list as accurate and exhaustive as possible. If you know of a company that should be here,

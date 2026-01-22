@@ -6,19 +6,24 @@
   font-weight: 400;
 
   /* Global Colors */
-  --color-fg: #000000;
-  --color-bg: #ffffff;
-  --color-accent: #f0f0f0;
+  --color-bg: #121212;
+  /* Deep Black/Charcoal */
+  --color-fg: #ffffff;
+  /* White text for page background */
+
+  /* Palette */
+  --color-orange: #FF885B;
+  /* Lighter, Faded Rally Orange */
+  --color-beige: #E6DCCD;
+  /* Industrial Beige */
+  --color-card-text: #1a1a1a;
+  /* Dark text for inside cards */
   --color-muted: #888888;
   --color-error: #CD664D;
 
-  /* Shared Border System */
-  --border-width: 4px;
-  --border-width-medium: 3px;
-  --border-width-thin: 2px;
-  --border-color: var(--color-fg);
-  --border-style: solid;
-  --border-full: var(--border-width) var(--border-style) var(--border-color);
+  /* No Borders */
+  --border-width: 0px;
+  --border-full: none;
 
   color: var(--color-fg);
   background-color: var(--color-bg);
@@ -32,7 +37,8 @@
 body {
   margin: 0;
   padding: 0;
-  background: #fff;
+  background: var(--color-bg);
+  color: var(--color-fg);
 }
 
 * {
@@ -67,27 +73,52 @@ a {
 }
 
 .card {
-  border: var(--border-full);
-  padding: 1.5rem;
+  border: none;
+  padding: 2rem;
+  /* Increased padding */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 180px;
+  min-height: 220px;
   position: relative;
-  background: var(--color-bg);
+
+  /* Default Card Style (Beige) */
+  background: var(--color-beige);
+  color: var(--color-card-text);
+  border-radius: 4px;
+}
+
+/* Explicit Variant Classes for "True Random" Logic */
+
+.card.accent-orange {
+  background: var(--color-orange);
+}
+
+.card.pattern-grid {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.card.pattern-dot {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+  background-size: 10px 10px;
 }
 
 .card-id {
   font-family: 'Space Mono', monospace;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  opacity: 0.6;
   margin-bottom: 0.5rem;
 }
 
 .card-title {
   font-weight: 900;
   font-size: 2.5rem;
-  line-height: 1;
-  margin-bottom: 0.5rem;
+  line-height: 0.95;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
 }
 
 .card-subtitle {
@@ -95,6 +126,7 @@ a {
   font-weight: 700;
   font-size: 1rem;
   margin-bottom: 1rem;
+  opacity: 0.8;
 }
 
 .card-tags {
@@ -104,41 +136,54 @@ a {
 }
 
 .tag {
-  background: var(--color-fg);
-  color: var(--color-bg);
-  padding: 2px 8px;
+  background: rgba(0, 0, 0, 0.1);
+  /* Subtle dark background on the beige card */
+  color: currentColor;
+  padding: 4px 10px;
   font-family: 'Space Mono', monospace;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .tag::before {
-  content: "■";
-  font-size: 0.6rem;
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: currentColor;
 }
 
 .tag.link {
-  background: var(--color-bg);
-  color: var(--color-fg);
-  border: var(--border-width-thin) var(--border-style) var(--border-color);
-  font-weight: 700;
+  background: var(--color-card-text);
+  color: var(--color-beige);
+  border: none;
   cursor: pointer;
-  text-decoration: none;
+  transition: all 0.2s;
+}
+
+/* Link tags on Orange cards: Dark Button, Orange Text */
+.card.accent-orange .tag.link {
+  color: var(--color-orange);
 }
 
 .tag.link:hover {
-  background: var(--color-fg);
-  color: var(--color-bg);
+  background: #ffffff;
+  /* White hover feels "poppy" on both */
+  color: #000000;
+  transform: translateY(-2px);
 }
 
 /* Global Page Header */
 .page-header {
-  margin-bottom: 3rem;
-  border-bottom: var(--border-full);
+  margin-bottom: 4rem;
   padding-bottom: 2rem;
   width: 100%;
+  border-bottom: 2px solid #333;
+  /* Dark divider instead of black */
 }
 
 .page-title {

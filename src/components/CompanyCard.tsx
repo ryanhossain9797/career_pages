@@ -1,5 +1,6 @@
 import type { Company, Tag } from '../types/company'
 import './CompanyCard.css'
+import { getCardVariant } from '../lib/visuals'
 
 interface CompanyCardProps {
     company: Company
@@ -10,6 +11,9 @@ interface CompanyCardProps {
 export function CompanyCard({ company, id, tags }: CompanyCardProps) {
     const isBroken = !company.name || !company.location || !company.tagIds;
     const displayId = id.toString().padStart(8, '0');
+
+    // Deterministic variant based on Index (per user request)
+    const variantClass = getCardVariant(id);
 
     if (isBroken) {
         return (
@@ -25,7 +29,7 @@ export function CompanyCard({ company, id, tags }: CompanyCardProps) {
     }
 
     return (
-        <section className="card company-card">
+        <section className={`card company-card ${variantClass}`}>
             <div className="card-id">{displayId}</div>
             <h2 className="card-title">{company.name}</h2>
             <div className="card-subtitle">{company.location}</div>
