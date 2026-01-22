@@ -14,6 +14,7 @@ interface AuthContextType {
     loading: boolean;
     signInWithGoogle: () => Promise<void>;
     signOut: () => Promise<void>;
+    toggleBookmark: (companyId: string, bookmarked: boolean) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -73,6 +74,39 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
     };
 
+    const toggleBookmark = async (companyId: string, bookmarked: boolean) => {
+        if (!user) {
+            console.warn("Cannot toggle bookmark: user not logged in");
+            return;
+        }
+
+        try {
+            const idToken = await user.getIdToken();
+
+            const response = await fetch('/api/toggle-bookmark', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${idToken}`
+                },
+                body: JSON.stringify({ companyId, bookmarked })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Failed to toggle bookmark');
+            }
+
+            const { bookmarkedCompanies } = await response.json();
+
+            // Update local profile state
+            setProfile(prev => prev ? { ...prev, bookmarkedCompanies } : null);
+        } catch (error: any) {
+            console.error("Error toggling bookmark:", error);
+            alert(`Bookmark error: ${error.message}`);
+        }
+    };
+
     const signOut = async () => {
         try {
             await firebaseSignOut(auth);
@@ -88,7 +122,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         profile,
         loading,
         signInWithGoogle,
-        signOut
+        signOut,
+        toggleBookmark
     }), [user, profile, loading]);
 
     return (

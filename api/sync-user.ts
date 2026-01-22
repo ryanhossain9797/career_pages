@@ -42,18 +42,26 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             // User exists, update last login
             const userDoc = querySnapshot.docs[0];
             const userDocRef = usersRef.doc(userDoc.id);
+            const userData = userDoc.data();
 
-            await userDocRef.update({
+            // Ensure bookmarkedCompanies exists (fail-safe for existing users)
+            const updateData: any = {
                 lastLogin: now,
                 // Optionally sync displayName/email if they changed in Google
-                email: email || userDoc.data().email,
-                displayName: name || userDoc.data().displayName
-            });
+                email: email || userData.email,
+                displayName: name || userData.displayName
+            };
+
+            if (!userData.bookmarkedCompanies) {
+                updateData.bookmarkedCompanies = [];
+            }
+
+            await userDocRef.update(updateData);
 
             profile = {
-                ...userDoc.data(),
-                id: userDoc.id,
-                lastLogin: now
+                ...userData,
+                ...updateData,
+                id: userDoc.id
             };
         } else {
             // New user, create profile
@@ -62,7 +70,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                 email: email || null,
                 displayName: name || null,
                 createdAt: now,
-                lastLogin: now
+                lastLogin: now,
+                bookmarkedCompanies: []
             };
 
             const docRef = await usersRef.add(newProfileData);

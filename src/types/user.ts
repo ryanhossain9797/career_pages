@@ -5,4 +5,5 @@ export interface UserProfile {
     displayName: string | null;
     createdAt: string;
     lastLogin: string;
+    bookmarkedCompanies?: string[]; // Array of company Firestore document IDs
 }

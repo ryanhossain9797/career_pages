@@ -33,3 +33,15 @@
     margin-top: 0.5rem;
     opacity: 0.9;
 }
+
+/* Bookmark button styles */
+/* Bookmarked: matches hover state of career page button (White background) */
+.tag.bookmark.bookmarked {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.tag.bookmark.loading {
+    opacity: 0.6;
+    cursor: wait;
+}

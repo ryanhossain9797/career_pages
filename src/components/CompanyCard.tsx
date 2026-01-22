@@ -1,3 +1,4 @@
+import React from 'react'
 import type { Company, Tag } from '../types/company'
 import './CompanyCard.css'
 import { getCardVariant } from '../lib/visuals'
@@ -6,14 +7,28 @@ interface CompanyCardProps {
     company: Company
     id: number
     tags: Tag[]
+    isBookmarked?: boolean
+    onToggleBookmark?: () => Promise<void> | void
 }
 
-export function CompanyCard({ company, id, tags }: CompanyCardProps) {
-    const isBroken = !company.name || !company.location || !company.tagIds;
+export function CompanyCard({ company, id, tags, isBookmarked = false, onToggleBookmark }: CompanyCardProps) {
+    const isBroken = !company.name || !company.tagIds;
     const displayId = id.toString().padStart(8, '0');
+    const [isLoading, setIsLoading] = React.useState(false);
 
     // Deterministic variant based on Index (per user request)
     const variantClass = getCardVariant(id);
+
+    const handleBookmarkClick = async () => {
+        if (onToggleBookmark && !isLoading) {
+            setIsLoading(true);
+            try {
+                await onToggleBookmark();
+            } finally {
+                setTimeout(() => setIsLoading(false), 300);
+            }
+        }
+    };
 
     if (isBroken) {
         return (
@@ -42,6 +57,15 @@ export function CompanyCard({ company, id, tags }: CompanyCardProps) {
                         </span>
                     );
                 })}
+                {onToggleBookmark && (
+                    <button
+                        onClick={handleBookmarkClick}
+                        disabled={isLoading}
+                        className={`tag link bookmark ${isBookmarked ? 'bookmarked' : 'unbookmarked'} ${isLoading ? 'loading' : ''}`}
+                    >
+                        {isLoading ? '...' : isBookmarked ? 'BOOKMARKED' : 'BOOKMARK'}
+                    </button>
+                )}
                 {company.careerPageUrl && company.careerPageUrl.trim() !== "" && (
                     <a href={company.careerPageUrl} target="_blank" rel="noopener noreferrer" className="tag link">
                         CAREER PAGE ↗

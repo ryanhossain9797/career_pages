@@ -4,11 +4,15 @@ import { CompanyCard } from '../components/CompanyCard'
 import { SearchBar } from '../components/SearchBar'
 import { Hero } from '../components/Hero'
 import { useData } from '../context/DataContext'
+import { useAuth } from '../context/AuthContext'
 
 export function Home() {
     const { data, loading, error } = useData()
+    const { profile, user, toggleBookmark } = useAuth()
     const [nameSearch, setNameSearch] = useState('')
     const [tagSearch, setTagSearch] = useState('')
+
+    const bookmarkedCompanies = profile?.bookmarkedCompanies || []
 
     const filteredCompanies = [...(data?.companies || [])]
         .filter(company => {
@@ -27,7 +31,17 @@ export function Home() {
 
             return matchesName && matchesTags
         })
-        .sort((a, b) => (a.name || '').localeCompare(b.name || ''))
+        .sort((a, b) => {
+            // Sort bookmarked companies first
+            const aBookmarked = bookmarkedCompanies.includes(a.id || '')
+            const bBookmarked = bookmarkedCompanies.includes(b.id || '')
+
+            if (aBookmarked && !bBookmarked) return -1
+            if (!aBookmarked && bBookmarked) return 1
+
+            // Then sort by name
+            return (a.name || '').localeCompare(b.name || '')
+        })
 
     return (
         <>
@@ -54,7 +68,19 @@ export function Home() {
 
                     <div className="grid">
                         {filteredCompanies.map((company, index) => (
-                            <CompanyCard key={index} company={company} id={index + 1} tags={data?.tags || []} />
+                            <CompanyCard
+                                key={company.id || index}
+                                company={company}
+                                id={index + 1}
+                                tags={data?.tags || []}
+                                isBookmarked={bookmarkedCompanies.includes(company.id || '')}
+                                onToggleBookmark={company.id && user ? () => {
+                                    return toggleBookmark(
+                                        company.id!,
+                                        !bookmarkedCompanies.includes(company.id!)
+                                    );
+                                } : undefined}
+                            />
                         ))}
                         {filteredCompanies.length === 0 && (
                             <div className="card large empty">
