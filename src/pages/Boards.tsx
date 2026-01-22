@@ -22,9 +22,9 @@ export function Boards() {
 
     return (
         <div className="boards-container">
-            <header className="boards-header">
-                <h1 className="hero-title">JOB BOARDS</h1>
-                <p className="hero-subtitle">CURATED JOB BOARDS AND GROUPS FOR BANGLADESHI ENGINEERS.</p>
+            <header className="page-header">
+                <h1 className="page-title">JOB BOARDS</h1>
+                <p className="page-subtitle">CURATED JOB BOARDS AND GROUPS FOR BANGLADESHI ENGINEERS.</p>
             </header>
 
             {Object.entries(groupedBoards).length > 0 ? (

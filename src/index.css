@@ -132,3 +132,31 @@ a {
   background: var(--color-fg);
   color: var(--color-bg);
 }
+
+/* Global Page Header */
+.page-header {
+  margin-bottom: 3rem;
+  border-bottom: var(--border-full);
+  padding-bottom: 2rem;
+  width: 100%;
+}
+
+.page-title {
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 0.9;
+  margin-bottom: 1rem;
+}
+
+.page-subtitle {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--color-muted);
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2.5rem;
+  }
+}

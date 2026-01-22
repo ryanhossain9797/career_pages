@@ -2,26 +2,6 @@
     padding-bottom: 4rem;
 }
 
-.boards-header {
-    margin-bottom: 3rem;
-    border-bottom: var(--border-full);
-    padding-bottom: 2rem;
-}
-
-.hero-title {
-    font-size: 4rem;
-    font-weight: 900;
-    line-height: 0.9;
-    margin-bottom: 1rem;
-}
-
-.hero-subtitle {
-    font-family: 'Space Mono', monospace;
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: var(--color-muted);
-}
-
 .board-section {
     margin-bottom: 4rem;
 }
