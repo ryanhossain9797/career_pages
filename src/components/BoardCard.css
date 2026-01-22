@@ -1,32 +1,32 @@
-.company-card {
-    transition: transform 0.1s;
+.board-card {
+    transition: transform 0.1s ease;
 }
 
-.company-card:hover {
+.board-card:hover {
     transform: translate(-4px, -4px);
     box-shadow: 4px 4px 0px var(--color-fg);
 }
 
-/* Specific size for company card title */
-.company-card .card-title {
+.board-card .card-title {
     font-size: 1.8rem;
+    margin: 1rem 0;
 }
 
-.company-card.broken {
+.board-card.broken {
     background-color: var(--color-error);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-height: 200px;
+    min-height: 150px;
 }
 
-.company-card.broken .broken-title {
+.board-card.broken .broken-title {
     font-weight: bold;
 }
 
-.company-card.broken .broken-subtitle {
+.board-card.broken .broken-subtitle {
     font-size: 0.8rem;
     margin-top: 0.5rem;
 }

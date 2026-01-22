@@ -97,19 +97,19 @@ export function CompanyReviews() {
             </div>
 
             {loading && (
-                <div className="card" style={{ marginTop: '1.5rem', borderStyle: 'dashed', opacity: 0.5, textAlign: 'center' }}>
+                <div className="card loading" style={{ marginTop: '1.5rem' }}>
                     <div className="card-subtitle">LOADING REVIEWS...</div>
                 </div>
             )}
 
             {error && (
-                <div className="card" style={{ marginTop: '1.5rem', borderStyle: 'dashed', borderColor: 'red', textAlign: 'center' }}>
-                    <div className="card-subtitle" style={{ color: 'red' }}>ERROR: {error}</div>
+                <div className="card error" style={{ marginTop: '1.5rem' }}>
+                    <div className="card-subtitle" style={{ color: 'inherit' }}>ERROR: {error}</div>
                 </div>
             )}
 
             {!loading && !error && reviews.length === 0 && (
-                <div className="card" style={{ marginTop: '1.5rem', borderStyle: 'dashed', opacity: 0.5, textAlign: 'center' }}>
+                <div className="card empty" style={{ marginTop: '1.5rem' }}>
                     <div className="card-subtitle">NO REVIEWS FOUND ON DESHIMULA.COM</div>
                 </div>
             )}

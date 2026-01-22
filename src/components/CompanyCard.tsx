@@ -8,7 +8,22 @@ interface CompanyCardProps {
 }
 
 export function CompanyCard({ company, id, tags }: CompanyCardProps) {
-    const displayId = id.toString().padStart(8, '0')
+    const isBroken = !company.name || !company.location || !company.tagIds;
+    const displayId = id.toString().padStart(8, '0');
+
+    if (isBroken) {
+        return (
+            <section
+                className="card company-card broken"
+            >
+                <div className="broken-title">MALFORMED DATA</div>
+                <div className="broken-subtitle">
+                    {company.name || company.id || `INDEX: ${id}`}
+                </div>
+            </section>
+        );
+    }
+
     return (
         <section className="card company-card">
             <div className="card-id">{displayId}</div>
@@ -33,16 +48,7 @@ export function CompanyCard({ company, id, tags }: CompanyCardProps) {
                         LINKEDIN ↗
                     </a>
                 )}
-                {/* <a
-                    href={`https://deshimula.com/stories/1?SearchTerm=${encodeURIComponent(company.name)}&Vibe=0`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="tag link"
-                >
-                    DESHIMULA ↗
-                </a> */}
             </div>
         </section>
-    )
+    );
 }
-

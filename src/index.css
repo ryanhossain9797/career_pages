@@ -10,6 +10,7 @@
   --color-bg: #ffffff;
   --color-accent: #f0f0f0;
   --color-muted: #888888;
+  --color-error: #CD664D;
 
   /* Shared Border System */
   --border-width: 4px;

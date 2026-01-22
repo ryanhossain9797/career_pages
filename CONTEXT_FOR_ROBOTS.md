@@ -28,7 +28,7 @@ This document provides a concise overview of the project architecture, data flow
 
 ### 2. Styling System (`src/index.css`)
 - Uses CSS custom properties (variables) for a consistent design system (borders, colors, spacing).
-- **Aesthetic**: Heavy borders (`var(--border-full)`), monospaced fonts for metadata, and high-contrast black/white palette.
+- **Aesthetic**: Heavy borders (`var(--border-full)`), monospaced fonts for metadata, and high-contrast black/white palette with a specific error accent (`var(--color-error)` #CD664D).
 - **Responsive Layouts**: 
     - **Grid**: Shared `.grid` class for cards.
     - **Header**: Uses a 2-row layout on mobile (Logo/Auth on top, Nav Tabs below).
@@ -36,6 +36,7 @@ This document provides a concise overview of the project architecture, data flow
 ### 3. Component Patterns
 - **Card-based UI**: Most items are displayed within `.card` elements.
 - **Interactive Elements**: Consistency rule — whole cards should generally **not** be clickable if they contain multiple links. Buttons (tags with `.link` class) are the primary interaction points (e.g., Career Page, LinkedIn). These are rendered conditionally.
+- **Data Safety**: Components receiving data (like `CompanyCard`, `BoardCard`) must handle malformed/missing fields gracefully. If critical data is missing, render a "broken" card state using `.broken` and `var(--color-error)`.
 - **Naming Convention**: Components are function-based and usually exported from their own file along with a companion `.css` file.
 
 ### 4. Special Logic: Company Reviews
@@ -56,4 +57,4 @@ This document provides a concise overview of the project architecture, data flow
 - **Keep it concise**: Ensure another LLM can read this in one `view_file` call and get a high-level map of the codebase.
 
 ---
-*Created on 2026-01-18 | Updated on 2026-01-20 (Google Auth, Mobile Adjustments & Company URL Refinements)*
+*Created on 2026-01-18 | Updated on 2026-01-22 (Broken Data Handling & Error Styling)*

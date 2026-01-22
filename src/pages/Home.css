@@ -19,3 +19,20 @@
         font-size: 3rem;
     }
 }
+
+.card.large.error {
+    border-style: dashed;
+    border-color: var(--color-error);
+    color: var(--color-error);
+}
+
+.card.large.loading {
+    border-style: dashed;
+    opacity: 0.5;
+}
+
+.card.large.empty {
+    border-style: dashed;
+    min-height: 100px;
+    opacity: 0.5;
+}

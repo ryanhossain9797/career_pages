@@ -12,11 +12,14 @@ export function Home() {
 
     const filteredCompanies = [...(data?.companies || [])]
         .filter(company => {
-            const matchesName = company.name.toLowerCase().includes(nameSearch.toLowerCase())
+            const name = company.name || '';
+            const tagIds = company.tagIds || [];
+
+            const matchesName = name.toLowerCase().includes(nameSearch.toLowerCase())
 
             const tagQueries = tagSearch.split(',').map(s => s.trim().toLowerCase()).filter(s => s !== '')
             const matchesTags = tagQueries.length === 0 || tagQueries.some(query =>
-                company.tagIds.some(tagId => {
+                tagIds.some(tagId => {
                     const tag = data?.tags.find(t => t.id === tagId)
                     return tag?.label.toLowerCase().includes(query) || tagId.toLowerCase().includes(query)
                 })
@@ -24,7 +27,7 @@ export function Home() {
 
             return matchesName && matchesTags
         })
-        .sort((a, b) => a.name.localeCompare(b.name))
+        .sort((a, b) => (a.name || '').localeCompare(b.name || ''))
 
     return (
         <>
@@ -32,7 +35,9 @@ export function Home() {
 
             {loading || error ? (
                 <div className="grid" style={{ marginTop: '1.5rem' }}>
-                    <div className="card large" style={{ borderStyle: 'dashed', opacity: 0.5 }}>
+                    <div
+                        className={`card large ${loading ? 'loading' : 'error'}`}
+                    >
                         <div className="card-subtitle">
                             {loading ? 'LOADING OPPORTUNITIES...' : `ERROR: ${error}`}
                         </div>
@@ -52,7 +57,7 @@ export function Home() {
                             <CompanyCard key={index} company={company} id={index + 1} tags={data?.tags || []} />
                         ))}
                         {filteredCompanies.length === 0 && (
-                            <div className="card large" style={{ borderStyle: 'dashed', minHeight: '100px', opacity: 0.5 }}>
+                            <div className="card large empty">
                                 <div className="card-subtitle">NO COMPANIES MATCH YOUR SEARCH CRITERIA.</div>
                             </div>
                         )}

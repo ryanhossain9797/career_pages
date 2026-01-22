@@ -4,6 +4,7 @@ export interface Tag {
 }
 
 export interface Company {
+    id?: string
     name: string
     location: string
     tagIds: string[]

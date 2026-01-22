@@ -92,3 +92,22 @@
         transform: translateY(0);
     }
 }
+
+.card.loading {
+    border-style: dashed;
+    opacity: 0.5;
+    text-align: center;
+}
+
+.card.error {
+    border-style: dashed;
+    border-color: var(--color-error);
+    text-align: center;
+    color: var(--color-error);
+}
+
+.card.empty {
+    border-style: dashed;
+    opacity: 0.5;
+    text-align: center;
+}
