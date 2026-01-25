@@ -2,9 +2,25 @@ import { Link, NavLink } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { UserMenu } from './UserMenu'
 import './Header.css'
+import { useEffect } from 'react'
 
-export function Header() {
+interface HeaderProps {
+    highlightSignIn: boolean;
+    setHighlightSignIn: (highlight: boolean) => void;
+}
+
+export function Header({ highlightSignIn, setHighlightSignIn }: HeaderProps) {
     const { user, signInWithGoogle } = useAuth()
+
+    useEffect(() => {
+        let timer: number;
+        if (highlightSignIn) {
+            timer = setTimeout(() => {
+                setHighlightSignIn(false);
+            }, 3000); // Highlight for 3 seconds
+        }
+        return () => clearTimeout(timer);
+    }, [highlightSignIn, setHighlightSignIn]);
 
     return (
         <header>
@@ -25,7 +41,10 @@ export function Header() {
                     <UserMenu />
                 ) : (
                     <div className="user-menu-wrapper">
-                        <button className="login-btn" onClick={signInWithGoogle}>
+                        <button
+                            className={`login-btn ${highlightSignIn ? 'highlight' : ''}`}
+                            onClick={signInWithGoogle}
+                        >
                             SIGN IN
                         </button>
                     </div>

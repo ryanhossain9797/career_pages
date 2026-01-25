@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import { Header } from './components/Header'
@@ -10,16 +11,18 @@ import { CompanyReviews } from './pages/CompanyReviews'
 import { Boards } from './pages/Boards'
 
 function App() {
+  const [highlightSignIn, setHighlightSignIn] = useState(false);
+
   return (
     <AuthProvider>
       <DataProvider>
         <Router>
           <div className="container">
-            <Header />
+            <Header highlightSignIn={highlightSignIn} setHighlightSignIn={setHighlightSignIn} />
 
             <main>
               <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Home setHighlightSignIn={setHighlightSignIn} />} />
                 <Route path="/boards" element={<Boards />} />
                 <Route path="/suggest" element={<Suggest />} />
                 <Route path="/reviews/:companyName" element={<CompanyReviews />} />

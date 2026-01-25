@@ -6,7 +6,11 @@ import { Hero } from '../components/Hero'
 import { useData } from '../context/DataContext'
 import { useAuth } from '../context/AuthContext'
 
-export function Home() {
+interface HomeProps {
+    setHighlightSignIn: (highlight: boolean) => void;
+}
+
+export function Home({ setHighlightSignIn }: HomeProps) {
     const { data, loading, error } = useData()
     const { profile, user, toggleBookmark } = useAuth()
     const [nameSearch, setNameSearch] = useState('')
@@ -74,12 +78,17 @@ export function Home() {
                                 id={index + 1}
                                 tags={data?.tags || []}
                                 isBookmarked={bookmarkedCompanies.includes(company.id || '')}
-                                onToggleBookmark={company.id && user ? () => {
-                                    return toggleBookmark(
-                                        company.id!,
-                                        !bookmarkedCompanies.includes(company.id!)
-                                    );
+                                onToggleBookmark={company.id ? async () => {
+                                    if (user) {
+                                        return toggleBookmark(
+                                            company.id!,
+                                            !bookmarkedCompanies.includes(company.id!)
+                                        );
+                                    }
+                                    setHighlightSignIn(true);
+                                    return Promise.resolve();
                                 } : undefined}
+
                             />
                         ))}
                         {filteredCompanies.length === 0 && (

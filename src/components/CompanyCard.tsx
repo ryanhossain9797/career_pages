@@ -57,15 +57,13 @@ export function CompanyCard({ company, id, tags, isBookmarked = false, onToggleB
                         </span>
                     );
                 })}
-                {onToggleBookmark && (
-                    <button
-                        onClick={handleBookmarkClick}
-                        disabled={isLoading}
-                        className={`tag link bookmark ${isBookmarked ? 'bookmarked' : 'unbookmarked'} ${isLoading ? 'loading' : ''}`}
-                    >
-                        {isLoading ? '...' : isBookmarked ? 'BOOKMARKED' : 'BOOKMARK'}
-                    </button>
-                )}
+                <button
+                    onClick={handleBookmarkClick}
+                    disabled={isLoading}
+                    className={`tag link bookmark ${isBookmarked ? 'bookmarked' : 'unbookmarked'} ${isLoading ? 'loading' : ''}`}
+                >
+                    {isLoading ? '...' : isBookmarked ? 'BOOKMARKED' : 'BOOKMARK'}
+                </button>
                 {company.careerPageUrl && company.careerPageUrl.trim() !== "" && (
                     <a href={company.careerPageUrl} target="_blank" rel="noopener noreferrer" className="tag link">
                         CAREER PAGE ↗
