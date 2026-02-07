@@ -45,3 +45,115 @@
     opacity: 0.6;
     cursor: wait;
 }
+
+/* Notes button styles */
+.tag.notes {
+    background-color: var(--color-accent);
+    color: white;
+    cursor: pointer;
+}
+
+.tag.notes:hover {
+    background-color: var(--color-accent-hover);
+}
+
+.tag.notes:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+/* Modal styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal {
+    background-color: white;
+    border-radius: 8px;
+    padding: 24px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal h3 {
+    margin: 0 0 16px 0;
+    color: var(--color-text-primary);
+    font-size: 1.4rem;
+}
+
+.notes-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    resize: vertical;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+.notes-textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.modal-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.modal-button.cancel {
+    background-color: var(--color-background-secondary);
+    color: var(--color-text-primary);
+}
+
+.modal-button.cancel:hover {
+    background-color: var(--color-border);
+}
+
+.modal-button.save {
+    background-color: var(--color-accent);
+    color: white;
+}
+
+.modal-button.save:hover {
+    background-color: var(--color-accent-hover);
+}
