@@ -102,7 +102,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             const { bookmarkedCompanies } = await response.json();
 
             // Update local profile state
-            setProfile(prev => prev ? { ...prev, bookmarkedCompanies } : null);
+            setProfile((prev: UserProfile | null) => prev ? { ...prev, bookmarkedCompanies } : null);
         } catch (error: any) {
             console.error("Error toggling bookmark:", error);
             alert(`Bookmark error: ${error.message}`);

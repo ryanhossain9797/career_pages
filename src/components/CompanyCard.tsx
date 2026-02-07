@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import type { Company, Tag } from '../types/company'
 import './CompanyCard.css'
 import { getCardVariant } from '../lib/visuals'
@@ -41,6 +41,11 @@ export function CompanyCard({ company, id, tags, isBookmarked = false, onToggleB
             return;
         }
 
+        if (!company.id) {
+            console.warn('Company id is undefined');
+            return;
+        }
+
         setIsLoadingNote(true);
         try {
             const existingNote = await getNote(company.id);
@@ -57,6 +62,11 @@ export function CompanyCard({ company, id, tags, isBookmarked = false, onToggleB
     const handleSaveNote = async () => {
         if (!user) {
             alert('Please log in to save notes');
+            return;
+        }
+
+        if (!company.id) {
+            console.warn('Company id is undefined');
             return;
         }
 
