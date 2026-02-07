@@ -15,6 +15,8 @@ interface AuthContextType {
     signInWithGoogle: () => Promise<void>;
     signOut: () => Promise<void>;
     toggleBookmark: (companyId: string, bookmarked: boolean) => Promise<void>;
+    getNote: (companyId: string) => Promise<string | null>;
+    saveNote: (companyId: string, note: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -100,10 +102,69 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             const { bookmarkedCompanies } = await response.json();
 
             // Update local profile state
-            setProfile(prev => prev ? { ...prev, bookmarkedCompanies } : null);
+            setProfile((prev: UserProfile | null) => prev ? { ...prev, bookmarkedCompanies } : null);
         } catch (error: any) {
             console.error("Error toggling bookmark:", error);
             alert(`Bookmark error: ${error.message}`);
+        }
+    };
+
+    const getNote = async (companyId: string): Promise<string | null> => {
+        if (!user) {
+            console.warn("Cannot get note: user not logged in");
+            return null;
+        }
+
+        try {
+            const idToken = await user.getIdToken();
+
+            const response = await fetch(`/api/get-note?companyId=${companyId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${idToken}`
+                }
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Failed to get note');
+            }
+
+            const { data } = await response.json();
+            return data?.note || null;
+        } catch (error: any) {
+            console.error("Error getting note:", error);
+            alert(`Get note error: ${error.message}`);
+            return null;
+        }
+    };
+
+    const saveNote = async (companyId: string, note: string): Promise<void> => {
+        if (!user) {
+            console.warn("Cannot save note: user not logged in");
+            return;
+        }
+
+        try {
+            const idToken = await user.getIdToken();
+
+            const response = await fetch('/api/save-note', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${idToken}`
+                },
+                body: JSON.stringify({ companyId, note })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Failed to save note');
+            }
+        } catch (error: any) {
+            console.error("Error saving note:", error);
+            alert(`Save note error: ${error.message}`);
         }
     };
 
@@ -123,7 +184,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         loading,
         signInWithGoogle,
         signOut,
-        toggleBookmark
+        toggleBookmark,
+        getNote,
+        saveNote
     }), [user, profile, loading]);
 
     return (
