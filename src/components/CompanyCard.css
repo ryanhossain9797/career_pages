@@ -73,7 +73,7 @@
     border-radius: 4px;
     padding: 2rem;
     width: 100%;
-    max-width: 500px;
+    max-width: 640px;
     animation: modalSlideIn 0.2s ease-out;
 }
 
@@ -100,7 +100,7 @@
     width: 100%;
     padding: 12px;
     background-color: rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    border: 2px solid rgba(0, 0, 0, 0.15);
     border-radius: 4px;
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
@@ -126,10 +126,11 @@
     gap: 0.5rem;
 }
 
+/* Modal buttons match .tag.link from the main tiles exactly */
 .notes-modal-button {
-    padding: 8px 16px;
+    padding: 4px 10px;
     border: none;
-    border-radius: 4px;
+    border-radius: 0;
     font-family: 'Space Mono', monospace;
     font-size: 0.75rem;
     font-weight: 700;
@@ -139,6 +140,8 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    background: var(--color-card-text);
+    color: var(--color-beige);
 }
 
 .notes-modal-button::before {
@@ -149,22 +152,8 @@
     background: currentColor;
 }
 
-.notes-modal-button.cancel {
-    background-color: rgba(0, 0, 0, 0.1);
-    color: var(--color-card-text);
-}
-
-.notes-modal-button.cancel:hover {
-    background-color: rgba(0, 0, 0, 0.2);
-}
-
-.notes-modal-button.save {
-    background-color: var(--color-card-text);
-    color: var(--color-beige);
-}
-
-.notes-modal-button.save:hover {
-    background-color: #ffffff;
+.notes-modal-button:hover {
+    background: #ffffff;
     color: #000000;
     transform: translateY(-2px);
 }

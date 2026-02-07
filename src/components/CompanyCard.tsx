@@ -147,7 +147,7 @@ export function CompanyCard({ company, id, tags, isBookmarked = false, onToggleB
                             value={note}
                             onChange={(e) => setNote(e.target.value)}
                             placeholder="Write your notes here..."
-                            rows={8}
+                            rows={12}
                             className="notes-textarea"
                         />
                         <div className="notes-modal-buttons">
