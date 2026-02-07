@@ -17,6 +17,7 @@ interface AuthContextType {
     toggleBookmark: (companyId: string, bookmarked: boolean) => Promise<void>;
     getNote: (companyId: string) => Promise<string | null>;
     saveNote: (companyId: string, note: string) => Promise<void>;
+    deleteNote: (companyId: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -162,9 +163,51 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                 const errorData = await response.json();
                 throw new Error(errorData.message || 'Failed to save note');
             }
+
+            // Update local profile state — add companyId to noteCompanyIds if not already present
+            setProfile((prev: UserProfile | null) => {
+                if (!prev) return null;
+                const existing = prev.noteCompanyIds || [];
+                if (existing.includes(companyId)) return prev;
+                return { ...prev, noteCompanyIds: [...existing, companyId] };
+            });
         } catch (error: any) {
             console.error("Error saving note:", error);
             alert(`Save note error: ${error.message}`);
+        }
+    };
+
+    const deleteNote = async (companyId: string): Promise<void> => {
+        if (!user) {
+            console.warn("Cannot delete note: user not logged in");
+            return;
+        }
+
+        try {
+            const idToken = await user.getIdToken();
+
+            const response = await fetch('/api/delete-note', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${idToken}`
+                },
+                body: JSON.stringify({ companyId })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Failed to delete note');
+            }
+
+            // Update local profile state — remove companyId from noteCompanyIds
+            setProfile((prev: UserProfile | null) => prev ? {
+                ...prev,
+                noteCompanyIds: (prev.noteCompanyIds || []).filter((id: string) => id !== companyId)
+            } : null);
+        } catch (error: any) {
+            console.error("Error deleting note:", error);
+            alert(`Delete note error: ${error.message}`);
         }
     };
 
@@ -186,7 +229,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         signOut,
         toggleBookmark,
         getNote,
-        saveNote
+        saveNote,
+        deleteNote
     }), [user, profile, loading]);
 
     return (

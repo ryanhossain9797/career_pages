@@ -46,7 +46,12 @@
     cursor: wait;
 }
 
-/* Notes button loading state */
+/* Notes button: white bg when user has a note (matches bookmarked style) */
+.tag.link.notes.has-note {
+    background-color: #ffffff;
+    color: #000000;
+}
+
 .tag.link.notes:disabled {
     opacity: 0.6;
     cursor: wait;
@@ -156,4 +161,15 @@
     background: #ffffff;
     color: #000000;
     transform: translateY(-2px);
+}
+
+.notes-modal-button.delete {
+    background: var(--color-error);
+    color: #ffffff;
+    margin-right: auto;
+}
+
+.notes-modal-button.delete:hover {
+    background: #b5503a;
+    color: #ffffff;
 }

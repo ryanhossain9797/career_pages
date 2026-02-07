@@ -20,7 +20,8 @@ export function CompanyCard({ company, id, tags, isBookmarked = false, onToggleB
     const [isNotesModalOpen, setIsNotesModalOpen] = useState(false);
     const [note, setNote] = useState('');
     const [isLoadingNote, setIsLoadingNote] = useState(false);
-    const { user, getNote, saveNote } = useAuth();
+    const { user, profile, getNote, saveNote, deleteNote } = useAuth();
+    const hasNote = (profile?.noteCompanyIds || []).includes(company.id);
 
     // Deterministic variant based on Index (per user request)
     const variantClass = getCardVariant(id);
@@ -80,6 +81,21 @@ export function CompanyCard({ company, id, tags, isBookmarked = false, onToggleB
         }
     };
 
+    const handleDeleteNote = async () => {
+        if (!user || !company.id) return;
+
+        if (!confirm('Are you sure you want to delete this note?')) return;
+
+        try {
+            await deleteNote(company.id);
+            setNote('');
+            setIsNotesModalOpen(false);
+        } catch (error) {
+            console.error('Error deleting note:', error);
+            alert('Failed to delete note');
+        }
+    };
+
     const handleCancel = () => {
         setIsNotesModalOpen(false);
         setNote('');
@@ -122,9 +138,9 @@ export function CompanyCard({ company, id, tags, isBookmarked = false, onToggleB
                 <button
                     onClick={handleOpenNotesModal}
                     disabled={isLoadingNote}
-                    className="tag link notes"
+                    className={`tag link notes ${hasNote ? 'has-note' : ''}`}
                 >
-                    {isLoadingNote ? '...' : 'NOTES'}
+                    {isLoadingNote ? '...' : hasNote ? 'NOTES ✎' : 'NOTES'}
                 </button>
                 {company.careerPageUrl && company.careerPageUrl.trim() !== "" && (
                     <a href={company.careerPageUrl} target="_blank" rel="noopener noreferrer" className="tag link">
@@ -151,10 +167,15 @@ export function CompanyCard({ company, id, tags, isBookmarked = false, onToggleB
                             className="notes-textarea"
                         />
                         <div className="notes-modal-buttons">
-                            <button onClick={handleCancel} className="notes-modal-button cancel">
+                            {hasNote && (
+                                <button onClick={handleDeleteNote} className="notes-modal-button delete">
+                                    Delete
+                                </button>
+                            )}
+                            <button onClick={handleCancel} className="notes-modal-button">
                                 Cancel
                             </button>
-                            <button onClick={handleSaveNote} className="notes-modal-button save">
+                            <button onClick={handleSaveNote} className="notes-modal-button">
                                 Save
                             </button>
                         </div>

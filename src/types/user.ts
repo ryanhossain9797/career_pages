@@ -4,6 +4,7 @@ export interface UserProfile {
     email: string;
     name: string;
     bookmarkedCompanies: string[];
+    noteCompanyIds: string[];
 }
 
 export interface UserCompanyNote {

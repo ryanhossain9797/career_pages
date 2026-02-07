@@ -58,10 +58,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
             await userDocRef.update(updateData);
 
+            // Fetch company_ids that have notes for this user
+            const notesSnapshot = await db.collection('user_company_note')
+                .where('user_id', '==', userDoc.id)
+                .get();
+            const noteCompanyIds = notesSnapshot.docs.map(doc => doc.data().company_id);
+
             profile = {
                 ...userData,
                 ...updateData,
-                id: userDoc.id
+                id: userDoc.id,
+                noteCompanyIds
             };
         } else {
             // New user, create profile
@@ -77,7 +84,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             const docRef = await usersRef.add(newProfileData);
             profile = {
                 ...newProfileData,
-                id: docRef.id
+                id: docRef.id,
+                noteCompanyIds: []
             };
         }
 
