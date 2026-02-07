@@ -4,6 +4,7 @@ import type { Company, Tag } from '../types/company'
 import './CompanyCard.css'
 import { getCardVariant } from '../lib/visuals'
 import { useAuth } from '../context/AuthContext'
+import { useUserData } from '../context/UserDataContext'
 
 interface CompanyCardProps {
     company: Company
@@ -20,7 +21,8 @@ export function CompanyCard({ company, id, tags, isBookmarked = false, onToggleB
     const [isNotesModalOpen, setIsNotesModalOpen] = useState(false);
     const [note, setNote] = useState('');
     const [isLoadingNote, setIsLoadingNote] = useState(false);
-    const { user, profile, getNote, saveNote, deleteNote } = useAuth();
+    const { user } = useAuth();
+    const { profile, getNote, saveNote, deleteNote } = useUserData();
     const hasNote = (profile?.noteCompanyIds || []).includes(company.id);
 
     // Deterministic variant based on Index (per user request)

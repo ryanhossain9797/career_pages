@@ -5,6 +5,7 @@ import { SearchBar } from '../components/SearchBar'
 import { Hero } from '../components/Hero'
 import { useData } from '../context/DataContext'
 import { useAuth } from '../context/AuthContext'
+import { useUserData } from '../context/UserDataContext'
 
 interface HomeProps {
     setHighlightSignIn: (highlight: boolean) => void;
@@ -12,7 +13,8 @@ interface HomeProps {
 
 export function Home({ setHighlightSignIn }: HomeProps) {
     const { data, loading, error } = useData()
-    const { profile, user, toggleBookmark } = useAuth()
+    const { user } = useAuth()
+    const { profile, toggleBookmark } = useUserData()
     const [nameSearch, setNameSearch] = useState('')
     const [tagSearch, setTagSearch] = useState('')
 
