@@ -46,30 +46,20 @@
     cursor: wait;
 }
 
-/* Notes button styles */
-.tag.notes {
-    background-color: var(--color-accent);
-    color: white;
-    cursor: pointer;
-}
-
-.tag.notes:hover {
-    background-color: var(--color-accent-hover);
-}
-
-.tag.notes:disabled {
+/* Notes button loading state */
+.tag.link.notes:disabled {
     opacity: 0.6;
     cursor: wait;
 }
 
 /* Modal styles */
-.modal-overlay {
+.notes-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,14 +67,14 @@
     padding: 20px;
 }
 
-.modal {
-    background-color: white;
-    border-radius: 8px;
-    padding: 24px;
+.notes-modal {
+    background-color: var(--color-beige);
+    color: var(--color-card-text);
+    border-radius: 4px;
+    padding: 2rem;
     width: 100%;
     max-width: 500px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    animation: modalSlideIn 0.3s ease-out;
+    animation: modalSlideIn 0.2s ease-out;
 }
 
 @keyframes modalSlideIn {
@@ -99,61 +89,82 @@
     }
 }
 
-.modal h3 {
-    margin: 0 0 16px 0;
-    color: var(--color-text-primary);
+.notes-modal h3 {
+    margin: 0 0 1rem 0;
+    color: var(--color-card-text);
     font-size: 1.4rem;
+    font-weight: 900;
 }
 
 .notes-textarea {
     width: 100%;
     padding: 12px;
-    border: 1px solid var(--color-border);
+    background-color: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 4px;
-    font-family: var(--font-body);
+    font-family: 'Inter', sans-serif;
     font-size: 1rem;
     resize: vertical;
     line-height: 1.5;
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
     box-sizing: border-box;
+    color: var(--color-card-text);
+}
+
+.notes-textarea::placeholder {
+    color: var(--color-muted);
 }
 
 .notes-textarea:focus {
     outline: none;
-    border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    border-color: var(--color-orange);
 }
 
-.modal-buttons {
+.notes-modal-buttons {
     display: flex;
     justify-content: flex-end;
-    gap: 12px;
+    gap: 0.5rem;
 }
 
-.modal-button {
-    padding: 10px 20px;
+.notes-modal-button {
+    padding: 8px 16px;
     border: none;
     border-radius: 4px;
-    font-size: 1rem;
-    font-weight: 500;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.modal-button.cancel {
-    background-color: var(--color-background-secondary);
-    color: var(--color-text-primary);
+.notes-modal-button::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: currentColor;
 }
 
-.modal-button.cancel:hover {
-    background-color: var(--color-border);
+.notes-modal-button.cancel {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: var(--color-card-text);
 }
 
-.modal-button.save {
-    background-color: var(--color-accent);
-    color: white;
+.notes-modal-button.cancel:hover {
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
-.modal-button.save:hover {
-    background-color: var(--color-accent-hover);
+.notes-modal-button.save {
+    background-color: var(--color-card-text);
+    color: var(--color-beige);
+}
+
+.notes-modal-button.save:hover {
+    background-color: #ffffff;
+    color: #000000;
+    transform: translateY(-2px);
 }

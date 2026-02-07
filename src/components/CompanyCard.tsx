@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { createPortal } from 'react-dom'
 import type { Company, Tag } from '../types/company'
 import './CompanyCard.css'
 import { getCardVariant } from '../lib/visuals'
@@ -137,10 +138,10 @@ export function CompanyCard({ company, id, tags, isBookmarked = false, onToggleB
                 )}
             </div>
 
-            {/* Notes Modal */}
-            {isNotesModalOpen && (
-                <div className="modal-overlay" onClick={handleCancel}>
-                    <div className="modal" onClick={(e) => e.stopPropagation()}>
+            {/* Notes Modal — rendered via portal so it's above all cards */}
+            {isNotesModalOpen && createPortal(
+                <div className="notes-modal-overlay" onClick={handleCancel}>
+                    <div className="notes-modal" onClick={(e) => e.stopPropagation()}>
                         <h3>Notes for {company.name}</h3>
                         <textarea
                             value={note}
@@ -149,16 +150,17 @@ export function CompanyCard({ company, id, tags, isBookmarked = false, onToggleB
                             rows={8}
                             className="notes-textarea"
                         />
-                        <div className="modal-buttons">
-                            <button onClick={handleCancel} className="modal-button cancel">
+                        <div className="notes-modal-buttons">
+                            <button onClick={handleCancel} className="notes-modal-button cancel">
                                 Cancel
                             </button>
-                            <button onClick={handleSaveNote} className="modal-button save">
+                            <button onClick={handleSaveNote} className="notes-modal-button save">
                                 Save
                             </button>
                         </div>
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
         </section>
     );
